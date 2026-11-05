@@ -10,7 +10,7 @@ if(box){const small=box.clientWidth<620,W=small?400:1120,H=small?330:340,L=small
  for(let v=0;v<=9;v+=3){el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),class:v?'grid':'axis'},svg);const t=el('text',{x:L-10,y:Y(v)+4,'text-anchor':'end',class:'tick'},svg);t.textContent=v}
  for(let d=lo;d<=hi;d+=small?3:1){const t=el('text',{x:X(d),y:H-B+20,'text-anchor':'middle',class:'tick'},svg);t.textContent=d==0?'1':d==1?'10':'10'+String(d).replace('-','⁻').replace(/\d/,c=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[c])}
  const xl=el('text',{x:(L+W-R)/2,y:H-6,'text-anchor':'middle',class:'axlabel'},svg);xl.textContent='Frequency (Hz)';
- const yl=el('text',{x:14,y:(T+H-B)/2,'text-anchor':'middle',class:'axlabel',transform:`rotate(-90 14 ${(T+H-B)/2})`},svg);yl.textContent='ε′ − ε∞';
+ const yl=el('text',{x:14,y:(T+H-B)/2,'text-anchor':'middle',class:'axlabel',transform:`rotate(-90 14 ${(T+H-B)/2})`},svg);yl.textContent='Real permittivity change';
  const paths=HN.map(p=>{let d='';for(let i=0;i<=240;i++){const l=lo+(hi-lo)*i/240;d+=(i?'L':'M')+X(l).toFixed(1)+' '+Y(hn(10**l,p)).toFixed(1)}return el('path',{d,fill:'none','stroke-linecap':'round'},svg)});
  const labs=HN.map(p=>{const t=el('text',{x:X(hi)+8,y:Y(hn(1e6,p))+4,class:'tick'},svg);t.textContent=p.lab;return t});
  // spread end labels so they do not collide
@@ -20,7 +20,7 @@ if(box){const small=box.clientWidth<620,W=small?400:1120,H=small?330:340,L=small
  const input=document.getElementById('age'),oS=document.getElementById('r-s'),oT=document.getElementById('r-t');let cur=0;
  const set=i=>{cur=i;paths.forEach((p,j)=>{p.setAttribute('stroke',j==i?'#1D4ED8':'#A9B5BC');p.setAttribute('stroke-width',j==i?3:1.5)});labs.forEach((t,j)=>{t.style.fontWeight=j==i?700:400;t.style.fill=j==i?'#171C21':'#4D5A64'});svg.appendChild(paths[i]);svg.appendChild(cross);svg.appendChild(dot);oS.textContent=HN[i].s.toFixed(2);oT.textContent=HN[i].t.toFixed(2)+' s';input.setAttribute('aria-valuetext',HN[i].lab)};
  input.addEventListener('input',()=>set(+input.value));set(0);
- const mv=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*W;if(x<L||x>W-R)return leave();const l=lo+(x-L)/(W-L-R)*(hi-lo),f=10**l,v=hn(f,HN[cur]);cross.setAttribute('x1',x);cross.setAttribute('x2',x);dot.setAttribute('cx',x);dot.setAttribute('cy',Y(v));cross.setAttribute('visibility','visible');dot.setAttribute('visibility','visible');tip.style.display='block';tip.style.left=Math.min(Math.max(70,x/W*r.width),r.width-70)+'px';tip.style.top=(Y(v)/H*r.height)+'px';tip.textContent=`${f<1?f.toPrecision(2):f.toPrecision(3).replace(/\.?0+$/,'')} Hz, ε′−ε∞ = ${v.toFixed(2)}`};
+ const mv=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*W;if(x<L||x>W-R)return leave();const l=lo+(x-L)/(W-L-R)*(hi-lo),f=10**l,v=hn(f,HN[cur]);cross.setAttribute('x1',x);cross.setAttribute('x2',x);dot.setAttribute('cx',x);dot.setAttribute('cy',Y(v));cross.setAttribute('visibility','visible');dot.setAttribute('visibility','visible');tip.style.display='block';tip.style.left=Math.min(Math.max(70,x/W*r.width),r.width-70)+'px';tip.style.top=(Y(v)/H*r.height)+'px';tip.textContent=`${f<1?f.toPrecision(2):f.toPrecision(3).replace(/\.?0+$/,'')} Hz, change = ${v.toFixed(2)}`};
  const leave=()=>{cross.setAttribute('visibility','hidden');dot.setAttribute('visibility','hidden');tip.style.display='none'};
  svg.addEventListener('pointermove',mv);svg.addEventListener('pointerleave',leave);
 }
@@ -30,7 +30,7 @@ if(wb){const W=560,PH=170,L=8,pw=W-16;const svg=el('svg',{class:'chart',viewBox:
  const f=x=>Math.sin(2*Math.PI*(1.2*x+7*x*x*x*x)),N=1200,xs=[...Array(N+1)].map((_,i)=>i/N);
  const act=xs.map(x=>Math.abs(f(Math.min(1,x+1/N))-f(x))*N+.15);const cdf=[0];for(let i=1;i<=N;i++)cdf[i]=cdf[i-1]+act[i];const F=cdf.map(c=>c/cdf[N]);
  const line=(u,top)=>{let d='';xs.forEach((x,i)=>{d+=(i?'L':'M')+(L+u(i)*pw).toFixed(1)+' '+(top+(1-f(x))/2*(PH-34)).toFixed(1)});return d};
- const lab=(y,t0)=>{const t=el('text',{x:L,y,class:'axlabel'},svg);t.textContent=t0};lab(16,'Response against original input x');lab(16+PH,'Same response against warped input H(x)');
+ const lab=(y,t0)=>{const t=el('text',{x:L,y,class:'axlabel'},svg);t.textContent=t0};lab(16,'Response against original input');lab(16+PH,'Same response against warped input');
  el('path',{d:line(i=>xs[i],26),fill:'none',stroke:'#4D5A64','stroke-width':1.6},svg);
  const pth=el('path',{fill:'none',stroke:'#1D4ED8','stroke-width':1.8},svg),inp=document.getElementById('lambda'),o=document.getElementById('lambda-v');
  const up=()=>{const l=+inp.value;o.textContent=l.toFixed(2);pth.setAttribute('d',line(i=>(1-l)*xs[i]+l*F[i],26+PH))};inp.addEventListener('input',up);up();

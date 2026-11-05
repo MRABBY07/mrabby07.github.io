@@ -102,3 +102,6 @@ footer p{margin:.4em 0}
 .md-videos{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
 .md-videos video{display:block;width:100%;height:auto;background:#fff}
 .md-label{font:600 .95rem "Familjen Grotesk",sans-serif;text-align:center;margin:.4em 0 0}
+.hn-eq{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px}
+.hn-eq math{font-size:1.45rem;margin:0}
+.hn-eq p{margin:0;flex:1 1 280px}

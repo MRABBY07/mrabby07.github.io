@@ -1,4 +1,4 @@
-:root{--carbon:#171C21;--slate:#4D5A64;--rule:#C9D3D8;--glass:#EDF2F3;--white:#FFFFFF;--cobalt:#1D4ED8;--cobalt-dark:#173EA8;--resin:#B86E00;--ghost:#A9B5BC;--measure:68ch}
+:root{--carbon:#171C21;--slate:#4D5A64;--rule:#D3D0C9;--glass:#F1EFEB;--white:#FFFFFF;--cobalt:#1D4ED8;--cobalt-dark:#173EA8;--resin:#B86E00;--ghost:#A9B5BC;--measure:68ch}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;color-scheme:light}
 body{margin:0;background:var(--glass);color:var(--carbon);font:400 1.0625rem/1.65 "Source Serif 4",Georgia,serif}

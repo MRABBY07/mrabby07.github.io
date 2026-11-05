@@ -92,3 +92,5 @@ footer ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px
 footer p{margin:.4em 0}
 @media (max-width:820px){.three,.split,.split.rev,.lists{grid-template-columns:1fr}.life{grid-template-columns:1fr;border-top:0;border-left:4px solid var(--carbon);margin-left:8px}.life li{padding:0 0 18px 20px}.life li::before{top:4px;left:-10px}.gallery{grid-template-columns:1fr 1fr}.tl>li,.updates li{grid-template-columns:1fr;gap:4px}.nav ul{gap:14px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.maps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:480px){.maps{grid-template-columns:1fr}}

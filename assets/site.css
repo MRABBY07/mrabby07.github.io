@@ -94,3 +94,4 @@ footer p{margin:.4em 0}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .maps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:480px){.maps{grid-template-columns:1fr}}
+.wide-fig{max-width:900px;margin:28px auto 0}

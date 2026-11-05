@@ -35,6 +35,7 @@ if(wb){const W=560,PH=170,L=8,pw=W-16;const svg=el('svg',{class:'chart',viewBox:
  const pth=el('path',{fill:'none',stroke:'#1D4ED8','stroke-width':1.8},svg),inp=document.getElementById('lambda'),o=document.getElementById('lambda-v');
  const up=()=>{const l=+inp.value;o.textContent=l.toFixed(2);pth.setAttribute('d',line(i=>(1-l)*xs[i]+l*F[i],26+PH))};inp.addEventListener('input',up);up();
 }
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('video').forEach(v=>{v.autoplay=false;v.pause()});
 // Publications filter
 const list=document.getElementById('pubs');
 if(list){const items=[...list.children],btns=[...document.querySelectorAll('[data-filter]')],q=document.getElementById('pub-q'),cnt=document.getElementById('pub-count');let mode='all';

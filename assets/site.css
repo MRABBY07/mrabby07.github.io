@@ -95,6 +95,10 @@ footer p{margin:.4em 0}
 .maps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:480px){.maps{grid-template-columns:1fr}}
 .wide-fig{max-width:900px;margin:28px auto 0}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:clamp(28px,5vw,64px);align-items:center}
-.headshot{display:block;width:100%;height:auto;border-bottom:6px solid var(--cobalt)}
-@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.headshot{order:-1;max-width:220px}}
+.hero-text::after{content:"";display:block;clear:both}
+.hero-text h1{font-size:clamp(2.2rem,5.2vw,4.4rem)}
+.headshot{float:right;display:block;width:clamp(100px,17vw,190px);height:auto;margin:0 0 16px clamp(14px,3vw,40px);border-radius:4px}
+.hero-text .actions{clear:none}
+.md-videos{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+.md-videos video{display:block;width:100%;height:auto;background:#fff}
+.md-label{font:600 .95rem "Familjen Grotesk",sans-serif;text-align:center;margin:.4em 0 0}

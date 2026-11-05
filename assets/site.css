@@ -95,3 +95,6 @@ footer p{margin:.4em 0}
 .maps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:480px){.maps{grid-template-columns:1fr}}
 .wide-fig{max-width:900px;margin:28px auto 0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:clamp(28px,5vw,64px);align-items:center}
+.headshot{display:block;width:100%;height:auto;border-bottom:6px solid var(--cobalt)}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.headshot{order:-1;max-width:220px}}
